@@ -1,0 +1,16 @@
+As a hands-on learner, I prefer to try the product myself so that I can put myself in the customer's shoes and understand their pain points.
+
+
+At LatticeFlow, I positioned AI safety and interpretability by immersing myself in the technical details until I could speak credibly to both chief AI officers, and ML engineers. At Omnicell, I sahdowed sales teams into hospital pharmacies to understand how nurses used Omnicell's medication dispensing cabinets for patient care. 
+
+At VMware, I learned how to run run VMs.... before I wrote the VIC narrative for VMworld's keynote presentation. 
+
+Building a web application of AI tools for marketers with Claude AI wasn't a resume line — it was me putting myself in the shoes of the enterprise developer I'd be marketing to.
+
+Anthropic's mission resonates with me at a deeper level too. At LatticeFlow, I helped position AI transparency and interpretability as enterprise imperatives — not compliance checkboxes. I believe responsible AI isn't a constraint on capability, it's the actual competitive advantage in enterprise markets where trust and security is paramount. Anthropic understands this better than anyone.
+What excites me most about this specific role is the portfolio challenge. 
+
+Claude.ai and Claude Code serve fundamentally different buyers — business decision makers and developers — but need to tell a coherent integrated story to win enterprise deals. I've navigated exactly this tension before: positioning Oracle Learn Cloud as a standalone cloud solution within the on-prem HCM portfolio, and repositioning Omnicell's hardware, software, and services into a unified XaaS narrative. The craft of making a portfolio feels inevitable rather than assembled is where I do my best work.
+
+Finally — healthcare. I know Anthropic is moving deliberately into regulated industries. I've marketed into hospital C-suites, navigated clinical and IT buying committees simultaneously, and built the trust frameworks that enterprise health systems require. That experience doesn't come quickly.
+I want to help define how the world's most important AI products reach the enterprises that need them most.

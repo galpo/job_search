@@ -1,0 +1,67 @@
+### Ritee’s Background & Experience
+
+- Product marketing career started accidentally at Google after acquisition
+  - Established structured product launch approach
+  - Applied scrappy startup methodology to enterprise companies
+- Enterprise experience at Oracle, VMware
+  - Learned buyer persona development
+  - Focused on putting self in customer shoes
+  - “If you can’t explain product to 5-year-old, what are you doing as product marketer?”
+- Lattice Flow AI (Zurich) - Product Marketing Director
+  - First marketing hire at engineering-centric company
+  - Built entire marketing function from scratch
+  - Increased organic search traffic 50%
+  - Improved pipeline significantly
+  - Company evaluates AI model safety/security across lifecycle
+    - Works with government agencies (planes flying in different environments)
+    - Partnered with NIST for compliance
+- Currently consulting with education company (reading skills for kids)
+
+### [ID.me](http://ID.me) Company & Role Context
+
+- 16-year-old company, Adam is entire B2B marketing org (first hire)
+- Just sent field marketing offer yesterday
+- ~5 consumer-focused marketers exist
+- B2B focus: top global brands, federal/state agencies, healthcare firms
+- Sales team structure:
+  - ~50 account executives
+  - Organized by verticals: Communities (Apple, Tesla, Lowe’s), SLED, Healthcare, Federal, Workforce
+  - Remote team across regions
+- Recent major win: CMS (Centers for Medicare Services) launched with [ID.me](http://ID.me) as default login
+  - Opens floodgates for state agencies
+  - Next: Epic partnerships for medical data sharing
+
+### Current Challenges & Immediate Priorities
+
+- Massive pent-up demand for marketing with no foundation in place
+- No unified messaging - everyone defines company differently
+- Currently in tactical mode addressing immediate needs
+- Key foundational work needed:
+  1. Message house for workforce business
+  2. Agreed-upon messaging/positioning across 5 verticals
+  3. Clear ICPs (currently nebulous)
+  4. Updated assets - pitch decks haven’t been refreshed since 2023
+  5. Central asset repository (moving to Seismic)
+- Using Claude Code to analyze 3,000 sales calls for messaging/ICP insights
+- Building “Claude Code marketing brain” - company-wide AI-forward approach
+  - Replaced Gamma with Claude for PowerPoint creation
+  - Added brand guidelines directly to Claude
+
+### Ritee’s Zero-to-One Building Experience
+
+- Lattice Flow most relevant - first product marketing hire
+- Conducted company-wide interviews, discovered messaging inconsistency
+- Created unified voice through executive alignment process
+- Developed buyer personas by:
+  - Sitting on sales calls throughout entire cycle
+  - Talking to BDRs/SDRs about pain points
+  - Analyzing previous deals in HubSpot
+  - Identifying sweet spot: AI maturity level 3-4 companies
+- Built launch calendar system with weekly stakeholder meetings
+- Created “cheat sheets” for competitive situations
+- Reduced sales cycle from 12 to 6 months at Elation
+- Strong partnership approach with product teams - “joined at the hip”
+
+---
+
+Chat with meeting transcript: [https://notes.granola.ai/t/00b7041d-0633-473a-a24d-1a4452237ce7](https://notes.granola.ai/t/00b7041d-0633-473a-a24d-1a4452237ce7)

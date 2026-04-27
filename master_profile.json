@@ -1,0 +1,60 @@
+{
+  "name": "Ritee Rouf",
+  "preferred_name": "Earth",
+  "location": "San Mateo, CA",
+  "email": "riteerouf@gmail.com",
+  "linkedin": "linkedin.com/in/riteerouf",
+
+  "target_roles": [
+    "Senior-level product or solutions marketing (VP, Director, founding PMM)",
+    "Senior marketing with GTM, PMM, or solutions marketing ownership (VP, Director), not comms-only",
+    "Fractional or consulting engagements welcome"
+  ],
+  "target_companies": "B2B SaaS companies", 
+  "target_stage": "Series B to public — companies that need GTM rigor, not just brand fluff",
+
+  "headline": "Senior enterprise, product and solutions marketing, AI GTM leader, Launched rebranding of Google Earth's first public release. Category creator at Alation. Head of Marketing at LatticeFlow AI.",
+
+  "brand_pillars": [
+    "Show don't tell",
+    "AI + human collaboration",
+    "Depth over breadth",
+    "Live the user journey",
+    "Authenticity and customer advocacy",
+    "Hands on leader who rolls up sleeves, not just high-level strategist",
+    "Builder mindset"
+  ],
+
+  "voice": "Warm, inclusive, direct. No corporate fluff. Storyteller. Wants to do good for others.",
+
+  "career_highlights": [
+    { "company": "Google (via Keyhole)", "years": "2003-2008", "role": "Early Marketing employee at Keyhole> Global Product Marketing Lead", "highlight": "Managed the renaming and launch of Google Earth; 200M+ installs; co-organized inaugural Google I/O" },
+    { "company": "Alation", "years": "2017-2018", "role": "Director of Product Marketing", "highlight": "Category creation of 'Data Catalog'; 7x SQL pipeline" },
+    { "company": "VMware", "years": "2015-2017", "role": "Enterprise PMM, Office of the CTO", "highlight": "vSphere $4B portfolio; VMworld 20K attendees" },
+    { "company": "Omnicell", "years": "2020-2023", "role": "Sr. Product Marketing Manager", "highlight": "$45M revenue (pre-configured cabinets); XaaS repositioning: separate initiative" },
+    { "company": "LatticeFlow AI", "years": "2023-2024", "role": "Head of Marketing & Executive Team Member", "highlight": "35% pipeline growth; built marketing from zero; Orchestrated AI safety panel, Davos AI House" },
+    { "company": "Independent", "years": "2025-Present", "role": "Principal Consultant, AI Product Marketing & GTM Strategy", "highlight": "Clients: FunFable Phonics, Advisor: Starups including Dorsal.fyi (acquired 2026)"}
+  ],
+
+  "differentiators": [
+    "Named a category (Data Catalog at Alation) — not just positioned products",
+    "Founding team experience (Google Earth, Storia edtech)",
+    "full stack GTM experience — product marketing, solutions marketing, AI GTM, analyst relations, and more",
+    "AI credibility: DeepLearning.AI + Hugging Face certified; active Substack on AI + marketing",
+    "Fractional option available — lowers risk for budget-constrained companies",
+    "Diverse industry experience — enterprise software, healthcare, edtech, and more",
+    "San Mateo based — Bay Area companies get a local senior hire who knows how to build AI-driven GTM strategies"
+  ],
+
+  "job_preferences": {
+    "must_haves": ["Remote or hybrid", "Competitive senior-level comp", "AI-adjacent product"],
+    "nice_to_haves": ["Team to lead or build", "Company with product-market fit traction", "Growth path to Director or VP role"],
+    "deal_breakers": ["On-call 24/7", "Extensive travel (>25%)", "Pure brand/comms role with no GTM ownership"]
+  },
+
+  "scoring_weights": {
+    "must_haves": 3.0,
+    "nice_to_haves": 1.0,
+    "deal_breakers": -5.0
+  }
+}

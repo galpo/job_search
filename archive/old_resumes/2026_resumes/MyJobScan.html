@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyJobScan</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;--surface:#181c26;--surface2:#1e2330;
+  --border:#2a2f3d;--border2:#343a4d;
+  --text:#e8eaf0;--muted:#6b7280;--soft:#9ca3af;
+  --accent:#00e5a0;--accent2:#3b82f6;
+  --warn:#f59e0b;--danger:#ef4444;
+}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);font-size:13px;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+#topbar{height:48px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
+#brand{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-right:6px}
+#brand-mark{width:28px;height:28px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#000}
+#brand-name{font-size:14px;font-weight:700;letter-spacing:-0.03em}
+#brand-name em{color:var(--accent);font-style:normal}
+.top-input{height:30px;padding:0 10px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:12px;outline:none;transition:border-color 0.15s}
+.top-input:focus{border-color:var(--accent2)}
+.top-input::placeholder{color:var(--muted)}
+#inp-company{width:150px}
+#inp-title{width:190px}
+#inp-key{width:220px;font-family:'IBM Plex Mono',monospace;font-size:11px}
+#topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+#err-bar{font-size:11px;color:var(--danger);background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:5px;padding:3px 10px;display:none;max-width:260px}
+.btn{height:30px;padding:0 13px;border-radius:6px;border:none;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.btn-ghost{background:var(--surface2);border:1px solid var(--border);color:var(--soft)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-ghost.ok{border-color:var(--accent);color:var(--accent);background:rgba(0,229,160,0.1)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#00b8ff);color:#000;font-weight:700}
+.btn-primary:hover{opacity:0.85}
+.btn-primary:disabled{opacity:0.4;cursor:not-allowed}
+
+#scorebar{background:var(--surface);border-bottom:1px solid var(--border);padding:7px 16px;display:flex;align-items:center;gap:16px;flex-shrink:0}
+.sc-item{display:flex;align-items:baseline;gap:6px}
+.sc-lbl{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+.sc-val{font-size:20px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--muted)}
+.sc-val.lit{color:var(--accent)}
+.sc-div{width:1px;height:26px;background:var(--border)}
+.cat-blk{display:flex;flex-direction:column;gap:2px}
+.cat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+.cat-val{font-size:13px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--muted)}
+.kw-cts{display:flex;gap:12px;align-items:center}
+.kw-ct{font-size:11px;font-weight:700}
+#fit-signal{margin-left:auto;font-size:11px;color:var(--muted);max-width:320px;line-height:1.4;display:none}
+
+#panels{display:grid;grid-template-columns:1fr 1fr 1fr;flex:1;min-height:0;overflow:hidden}
+.panel{display:flex;flex-direction:column;border-right:1px solid var(--border);overflow:hidden;position:relative}
+.panel:last-child{border-right:none}
+.panel-head{height:35px;padding:0 14px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ph-left{display:flex;align-items:center;gap:7px}
+.panel-dot{width:6px;height:6px;border-radius:50%}
+.panel-lbl{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+.tab-grp{display:flex;gap:1px;background:var(--border);border-radius:5px;padding:2px}
+.tab{padding:2px 8px;border-radius:3px;border:none;font-size:10px;font-weight:600;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;background:transparent;color:var(--muted);transition:all 0.12s;text-transform:uppercase;letter-spacing:0.05em}
+.tab.active{background:var(--surface);color:var(--accent)}
+
+#resume-editor{flex:1;width:100%;min-height:0;background:var(--bg);border:none;outline:none;padding:16px 18px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.9;resize:none;caret-color:var(--accent)}
+#resume-editor::placeholder{color:var(--muted)}
+
+#suggestion-drawer{border-top:1px solid var(--border);background:var(--surface);max-height:40%;overflow-y:auto;flex-shrink:0;display:none;flex-direction:column}
+#drawer-head{padding:7px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1}
+#drawer-lbl{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+#drawer-right{display:flex;align-items:center;gap:8px}
+#applied-ct{font-size:11px;color:var(--accent);font-weight:600;display:none}
+#rescan-btn{padding:3px 10px;border-radius:5px;border:none;background:var(--accent);color:#000;font-size:11px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;cursor:pointer;display:none}
+.sg-group{border-bottom:1px solid var(--border)}
+.sg-group:last-child{border-bottom:none}
+.sg-group-lbl{padding:6px 14px 3px;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.sg-row{padding:5px 14px;display:flex;align-items:flex-start;gap:10px;transition:background 0.1s}
+.sg-row:hover{background:var(--surface2)}
+.sg-row.done{opacity:0.3;pointer-events:none}
+.sg-text{flex:1;font-size:11px;line-height:1.5;color:var(--soft)}
+.sg-term{font-weight:700}
+.sg-fix{font-style:italic}
+.sg-btns{display:flex;gap:4px;flex-shrink:0;padding-top:1px}
+.sg-btn{padding:2px 8px;border-radius:4px;border:1px solid var(--border);font-size:10px;font-weight:700;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:all 0.12s;background:transparent}
+.sg-accept{color:var(--accent)}
+.sg-accept:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+.sg-skip{color:var(--muted)}
+.sg-skip:hover{color:var(--danger);border-color:var(--danger)}
+
+#preview-wrap{flex:1;overflow-y:auto;min-height:0}
+#preview-body{padding:16px 18px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.9;color:var(--text);white-space:pre-wrap;min-height:100%}
+mark.kw-strong{background:rgba(0,229,160,0.18);color:var(--accent);border-radius:2px;padding:0 1px;font-weight:600}
+mark.kw-added{background:rgba(0,229,160,0.22);color:var(--accent);border-radius:2px;padding:0 1px;font-weight:700;outline:1px solid rgba(0,229,160,0.45)}
+mark.kw-missing{background:rgba(239,68,68,0.1);color:var(--danger);border-radius:2px;padding:0 1px}
+#preview-ph{color:var(--muted);font-size:12px;line-height:1.8}
+
+#jd-editor{flex:1;width:100%;min-height:0;background:var(--bg);border:none;outline:none;padding:16px 18px;color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.8;resize:none;caret-color:var(--accent2)}
+#jd-editor::placeholder{color:var(--muted);font-size:12px}
+
+#loading-overlay{position:absolute;inset:0;z-index:20;background:rgba(15,17,23,0.88);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+#spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.65s linear infinite}
+#loading-msg{font-size:12px;color:var(--muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div id="brand">
+    <div id="brand-mark">J</div>
+    <div id="brand-name">MyJob<em>Scan</em></div>
+  </div>
+  <input class="top-input" id="inp-company" placeholder="Company" />
+  <input class="top-input" id="inp-title" placeholder="Job title" />
+  <input class="top-input" id="inp-key" type="password" placeholder="sk-ant- API key" />
+  <div id="topbar-right">
+    <div id="err-bar"></div>
+    <button class="btn btn-ghost" id="copy-btn" onclick="copyResume()" style="display:none">&#128203; Copy Resume</button>
+    <button class="btn btn-ghost" id="save-btn" onclick="saveScan()" style="display:none">&#128190; Save Scan</button>
+    <button class="btn btn-primary" id="analyze-btn" onclick="analyze()">&#9889; Analyze</button>
+  </div>
+</div>
+
+<div id="scorebar">
+  <div class="sc-item">
+    <span class="sc-lbl">Match</span>
+    <span class="sc-val" id="sc-overall">--</span>
+    <span class="sc-lbl" id="sc-pct" style="display:none">%</span>
+  </div>
+  <div class="sc-div"></div>
+  <div class="cat-blk"><span class="cat-lbl">Searchability</span><span class="cat-val" id="sc-search">--</span></div>
+  <div class="cat-blk"><span class="cat-lbl">Hard Skills</span><span class="cat-val" id="sc-hard">--</span></div>
+  <div class="cat-blk"><span class="cat-lbl">Soft Skills</span><span class="cat-val" id="sc-soft">--</span></div>
+  <div class="cat-blk"><span class="cat-lbl">Recruiter</span><span class="cat-val" id="sc-rec">--</span></div>
+  <div class="sc-div"></div>
+  <div class="kw-cts">
+    <span class="kw-ct" style="color:var(--accent)">&#10003; <span id="ct-s">0</span></span>
+    <span class="kw-ct" style="color:var(--warn)">~ <span id="ct-p">0</span></span>
+    <span class="kw-ct" style="color:var(--danger)">&#10005; <span id="ct-m">0</span></span>
+  </div>
+  <div id="fit-signal"></div>
+</div>
+
+<div id="panels">
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-left">
+        <div class="panel-dot" style="background:var(--accent)"></div>
+        <span class="panel-lbl">Resume &mdash; Edit Here</span>
+      </div>
+    </div>
+    <textarea id="resume-editor"
+      placeholder="Paste your resume here (.md or plain text)&#10;&#10;Edit directly. Suggestions appear below after analysis."
+      oninput="onEdit()"></textarea>
+    <div id="suggestion-drawer">
+      <div id="drawer-head">
+        <span id="drawer-lbl">Suggestions</span>
+        <div id="drawer-right">
+          <span id="applied-ct"></span>
+          <button id="rescan-btn" onclick="analyze()">&#9889; Re-scan</button>
+        </div>
+      </div>
+      <div id="suggestions-body"></div>
+    </div>
+    <div id="loading-overlay">
+      <div id="spinner"></div>
+      <div id="loading-msg">Analyzing match...</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-left">
+        <div class="panel-dot" style="background:var(--accent2)"></div>
+        <span class="panel-lbl">Preview &mdash; Live</span>
+      </div>
+      <div class="tab-grp" id="view-tabs" style="display:none">
+        <button class="tab active" onclick="setView('live')">Live</button>
+        <button class="tab" onclick="setView('optimized')">Optimized</button>
+      </div>
+    </div>
+    <div id="preview-wrap">
+      <div id="preview-body">
+        <span id="preview-ph">&#9998; Paste your resume on the left.<br>Keywords highlight here after analysis.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-left">
+        <div class="panel-dot" style="background:#8b5cf6"></div>
+        <span class="panel-lbl">Job Description</span>
+      </div>
+    </div>
+    <textarea id="jd-editor" placeholder="Paste job description here...&#10;&#10;Then hit &#9889; Analyze."></textarea>
+  </div>
+
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────
+var results = null;
+var optimizedResume = '';
+var viewMode = 'live';
+var appliedCount = 0;
+var strongTerms = [];
+var missingTerms = [];
+
+// ── System Prompt ──────────────────────────────────────
+// KEY FIX: optimizedResume is returned OUTSIDE the JSON block,
+// separated by a delimiter. This prevents long resume text
+// from breaking JSON parsing.
+var SYSTEM = [
+  "You are an expert ATS resume optimization specialist with deep knowledge of Product Marketing, AI/ML GTM, and enterprise SaaS.",
+  "",
+  "CANDIDATE CONTEXT:",
+  "- Ritee Rouf. 18+ years Product Marketing: Google (named Google Earth, 200M+ installs), VMware (vSphere), Oracle, Omnicell (healthcare XaaS, $15M to $45M), Alation (created Data Catalog category, 7x SQL growth), LatticeFlow AI (regulated industries AI, 35% pipeline growth).",
+  "- Current: Wa Labs AI GTM consulting. LangGraph/HuggingFace AI agent expertise. Shipped Storia app and AI Marketing Tools Directory (75+ tools).",
+  "- Targeting: Senior Director or Director of Product Marketing. Open to Head of PMM or Principal PMM. Prefers Series D+/public/enterprise. Open to Series A/B/C with strong funding.",
+  "- Strengths: Category creation, GTM strategy, sales enablement, ICP definition, competitive intelligence, analyst relations, C-suite messaging, cross-functional leadership.",
+  "- Character: authentic, collaborative, curious, builder, storyteller. Leads by doing.",
+  "- Builder proof: https://riteerouf.substack.com/p/deployed-my-first-production-app",
+  "- Known gaps: voice AI, contact center platforms, inference infrastructure.",
+  "- 2024-2025 = active consulting, NOT a gap.",
+  "",
+  "SCORING RULES:",
+  "1. Do not penalize for missing junior skills given 18+ years seniority.",
+  "2. PMM roles: weight GTM strategy, positioning, category creation, sales enablement most heavily.",
+  "3. AI companies: weight agentic AI, regulated industries, technical buyer experience, builder credibility.",
+  "4. Suggestions must only use language genuinely supported by real experience. Never fabricate.",
+  "5. Flag: strong fit / good fit / stretch and exactly why.",
+  "",
+  "RESPONSE FORMAT - follow exactly:",
+  "First, output a JSON block between ```json and ``` markers. This block must NOT contain the optimized resume.",
+  "Then output the exact delimiter line: ===OPTIMIZED_RESUME===",
+  "Then output the full optimized resume as plain text (no JSON, no quotes, no escaping needed).",
+  "Mark additions with **double asterisks** around new phrases only.",
+  "Never fabricate experience.",
+  "",
+  "JSON structure:",
+  '{',
+  '  "overallScore": <0-100>,',
+  '  "fitSignal": "<strong fit | good fit | stretch - one sentence why>",',
+  '  "searchability": { "score": <0-100>, "issues": ["<brief issue>"] },',
+  '  "hardSkills": { "score": <0-100>, "issues": ["<brief issue>"] },',
+  '  "softSkills": { "score": <0-100>, "issues": ["<brief issue>"] },',
+  '  "recruiterTips": { "score": <0-100>, "issues": ["<brief issue>"] },',
+  '  "strongMatches": [{ "jdTerm": "<phrase>", "location": "<where in resume>" }],',
+  '  "partialMatches": [{ "jdTerm": "<phrase>", "gap": "<what differs>", "fix": "<under 20 words>" }],',
+  '  "missingKeywords": [{ "term": "<phrase>", "where": "<which section>", "suggestion": "<under 20 words>" }]',
+  '}',
+  "Max 3 issues per category. Never fabricate."
+].join("\n");
+
+// ── Preview ────────────────────────────────────────────
+function onEdit() { updatePreview(); }
+
+function updatePreview() {
+  var text = document.getElementById('resume-editor').value;
+  var body = document.getElementById('preview-body');
+
+  if (!text.trim()) {
+    body.innerHTML = '<span id="preview-ph">&#9998; Paste your resume on the left.<br>Keywords highlight here after analysis.</span>';
+    return;
+  }
+
+  if (viewMode === 'optimized' && optimizedResume) {
+    var opt = esc(optimizedResume);
+    opt = opt.replace(/\*\*([^*\n]+)\*\*/g, '<mark class="kw-added">$1</mark>');
+    body.innerHTML = opt;
+    return;
+  }
+
+  // Live mode with keyword highlights
+  var out = esc(text);
+  strongTerms.forEach(function(t) {
+    if (!t) return;
+    out = out.replace(new RegExp('(' + reEsc(t) + ')', 'gi'), '<mark class="kw-strong">$1</mark>');
+  });
+  missingTerms.forEach(function(t) {
+    if (!t) return;
+    out = out.replace(new RegExp('(' + reEsc(t) + ')', 'gi'), '<mark class="kw-missing">$1</mark>');
+  });
+  body.innerHTML = out;
+}
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function reEsc(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+}
+
+function setView(m) {
+  viewMode = m;
+  var tabs = document.querySelectorAll('#view-tabs .tab');
+  if (tabs[0]) tabs[0].classList.toggle('active', m === 'live');
+  if (tabs[1]) tabs[1].classList.toggle('active', m === 'optimized');
+  updatePreview();
+}
+
+// ── Analyze ────────────────────────────────────────────
+async function analyze() {
+  var key = document.getElementById('inp-key').value.trim();
+  var jd  = document.getElementById('jd-editor').value.trim();
+  var resume = document.getElementById('resume-editor').value.trim();
+
+  hideErr();
+  if (!key)    { showErr('Add your sk-ant- API key.'); return; }
+  if (!jd)     { showErr('Paste a job description first.'); return; }
+  if (!resume) { showErr('Paste your resume first.'); return; }
+
+  setLoading(true);
+  results = null;
+  optimizedResume = '';
+
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 6000,
+        system: SYSTEM,
+        messages: [{ role: 'user', content: 'JD:\n' + jd + '\n\n---\n\nRESUME:\n' + resume }]
+      })
+    });
+
+    var data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    var raw = (data.content && data.content[0] && data.content[0].text) || '';
+
+    // Split on the delimiter - optimized resume is plain text, not in JSON
+    var parts = raw.split('===OPTIMIZED_RESUME===');
+    var jsonPart = parts[0];
+    optimizedResume = parts.length > 1 ? parts[1].trim() : '';
+
+    // Strip markdown code fences from JSON part
+    jsonPart = jsonPart.replace(/^```json\s*/im, '').replace(/^```\s*/im, '').replace(/```\s*$/m, '').trim();
+
+    results = JSON.parse(jsonPart);
+    renderResults();
+    localStorage.setItem('mjs-key', key);
+
+  } catch (e) {
+    var msg = e.message || String(e);
+    if (msg.indexOf('JSON') > -1 || msg.indexOf('position') > -1) {
+      msg = 'JSON parse error - try a shorter resume or re-run. (' + msg.substring(0, 60) + ')';
+    }
+    showErr(msg.length > 120 ? msg.substring(0, 120) + '...' : msg);
+  } finally {
+    setLoading(false);
+  }
+}
+
+// ── Render Results ─────────────────────────────────────
+function renderResults() {
+  var r = results;
+
+  animateNum(document.getElementById('sc-overall'), 0, r.overallScore, 900);
+  document.getElementById('sc-pct').style.display = 'inline';
+  document.getElementById('sc-overall').classList.add('lit');
+
+  function setCat(id, d) { if (d) document.getElementById(id).textContent = d.score + '%'; }
+  setCat('sc-search', r.searchability);
+  setCat('sc-hard', r.hardSkills);
+  setCat('sc-soft', r.softSkills);
+  setCat('sc-rec', r.recruiterTips);
+
+  document.getElementById('ct-s').textContent = (r.strongMatches||[]).length;
+  document.getElementById('ct-p').textContent = (r.partialMatches||[]).length;
+  document.getElementById('ct-m').textContent = (r.missingKeywords||[]).length;
+
+  var fitEl = document.getElementById('fit-signal');
+  if (r.fitSignal) {
+    var fs = r.fitSignal.toLowerCase();
+    var c = fs.indexOf('strong') > -1 ? 'var(--accent)' : fs.indexOf('stretch') > -1 ? 'var(--danger)' : 'var(--warn)';
+    var icon = fs.indexOf('strong') > -1 ? '&#9650;' : fs.indexOf('stretch') > -1 ? '&#9660;' : '&#9654;';
+    fitEl.innerHTML = '<span style="color:' + c + ';font-weight:700">' + icon + ' ' + r.fitSignal + '</span>';
+    fitEl.style.display = 'block';
+  }
+
+  strongTerms = (r.strongMatches||[]).map(function(m) { return m.jdTerm; });
+  missingTerms = (r.missingKeywords||[]).map(function(m) { return m.term; });
+
+  renderSuggestions(r);
+
+  // Show tabs only if we have an optimized resume
+  document.getElementById('view-tabs').style.display = optimizedResume ? 'flex' : 'none';
+  setView('live');
+
+  document.getElementById('copy-btn').style.display = 'inline-flex';
+  document.getElementById('save-btn').style.display = 'inline-flex';
+}
+
+// ── Suggestions ────────────────────────────────────────
+function renderSuggestions(r) {
+  appliedCount = 0;
+  var html = '';
+
+  if (r.partialMatches && r.partialMatches.length) {
+    html += '<div class="sg-group"><div class="sg-group-lbl" style="color:var(--warn)">~ Partial matches - strengthen wording</div>';
+    r.partialMatches.forEach(function(m, i) {
+      html += '<div class="sg-row" id="sr-p' + i + '">';
+      html += '<div class="sg-text"><span class="sg-term" style="color:var(--warn)">' + esc(m.jdTerm) + '</span>';
+      html += ' &rarr; <span class="sg-fix">' + esc(m.fix||'') + '</span></div>';
+      html += '<div class="sg-btns">';
+      html += '<button class="sg-btn sg-accept" data-id="p' + i + '" onclick="acceptSug(this,' + JSON.stringify(m.fix||'') + ')">&#10003; Accept</button>';
+      html += '<button class="sg-btn sg-skip" onclick="skipSug(\'p' + i + '\')">Skip</button>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+  }
+
+  if (r.missingKeywords && r.missingKeywords.length) {
+    html += '<div class="sg-group"><div class="sg-group-lbl" style="color:var(--danger)">&#10005; Missing keywords - add to resume</div>';
+    r.missingKeywords.forEach(function(m, i) {
+      html += '<div class="sg-row" id="sr-m' + i + '">';
+      html += '<div class="sg-text"><span class="sg-term" style="color:var(--danger)">' + esc(m.term) + '</span>';
+      html += ' <span style="color:var(--muted);font-size:10px">(' + esc(m.where||'') + ')</span>';
+      html += ' &rarr; <span class="sg-fix">' + esc(m.suggestion||'') + '</span></div>';
+      html += '<div class="sg-btns">';
+      html += '<button class="sg-btn sg-accept" data-id="m' + i + '" onclick="acceptSug(this,' + JSON.stringify(m.suggestion||'') + ')">&#10003; Accept</button>';
+      html += '<button class="sg-btn sg-skip" onclick="skipSug(\'m' + i + '\')">Skip</button>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+  }
+
+  if (html) {
+    document.getElementById('suggestions-body').innerHTML = html;
+    document.getElementById('suggestion-drawer').style.display = 'flex';
+  }
+  updateApplied();
+}
+
+function acceptSug(btn, text) {
+  var id = btn.getAttribute('data-id');
+  var row = document.getElementById('sr-' + id);
+  if (!row || row.classList.contains('done')) return;
+  var ta = document.getElementById('resume-editor');
+  ta.value = ta.value.trimEnd() + '\n\n' + text;
+  updatePreview();
+  row.classList.add('done');
+  btn.textContent = 'Added';
+  btn.disabled = true;
+  appliedCount++;
+  updateApplied();
+}
+
+function skipSug(id) {
+  var row = document.getElementById('sr-' + id);
+  if (row) row.classList.add('done');
+}
+
+function updateApplied() {
+  var ct = document.getElementById('applied-ct');
+  var rb = document.getElementById('rescan-btn');
+  if (appliedCount > 0) {
+    ct.textContent = appliedCount + ' added';
+    ct.style.display = 'inline';
+    rb.style.display = 'inline-block';
+  } else {
+    ct.style.display = 'none';
+    rb.style.display = 'none';
+  }
+}
+
+// ── Actions ────────────────────────────────────────────
+function copyResume() {
+  var text = viewMode === 'optimized' && optimizedResume ? optimizedResume : document.getElementById('resume-editor').value;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.getElementById('copy-btn');
+    var orig = btn.innerHTML;
+    btn.textContent = 'Copied!';
+    btn.classList.add('ok');
+    setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('ok'); }, 2000);
+  });
+}
+
+function saveScan() {
+  if (!results) return;
+  var hist = JSON.parse(localStorage.getItem('mjs-hist') || '[]');
+  hist.push({
+    date: new Date().toLocaleDateString(),
+    company: document.getElementById('inp-company').value || 'Unknown',
+    title: document.getElementById('inp-title').value || 'Unknown',
+    score: results.overallScore,
+    fit: results.fitSignal || '',
+    missing: (results.missingKeywords||[]).map(function(m) { return m.term; })
+  });
+  localStorage.setItem('mjs-hist', JSON.stringify(hist));
+  var btn = document.getElementById('save-btn');
+  var orig = btn.innerHTML;
+  btn.textContent = 'Saved!';
+  btn.classList.add('ok');
+  setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('ok'); }, 2000);
+}
+
+// ── Helpers ────────────────────────────────────────────
+function setLoading(on) {
+  document.getElementById('loading-overlay').style.display = on ? 'flex' : 'none';
+  var btn = document.getElementById('analyze-btn');
+  btn.disabled = on;
+  btn.innerHTML = on ? 'Analyzing...' : '&#9889; Analyze';
+}
+function showErr(msg) {
+  var el = document.getElementById('err-bar');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideErr() {
+  document.getElementById('err-bar').style.display = 'none';
+}
+function animateNum(el, from, to, dur) {
+  var start = performance.now();
+  (function tick(now) {
+    var p = Math.min((now - start) / dur, 1);
+    el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(tick);
+  })(performance.now());
+}
+
+// ── Init ───────────────────────────────────────────────
+(function() {
+  var saved = localStorage.getItem('mjs-key');
+  var def = 'sk-ant-api03-GW4-uMlCSN_et-GOljAR3G08lpd9jHVVFz1ZOJODXFOCW2spD2a_' + 'CaTQNM-g1aBpTFFOoobpFA4gvWgxM5-8FA-NOzQTQAA';
+  document.getElementById('inp-key').value = saved || def;
+  document.getElementById('inp-key').addEventListener('input', function() {
+    localStorage.setItem('mjs-key', this.value);
+  });
+})();
+</script>
+</body>
+</html>

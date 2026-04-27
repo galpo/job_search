@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+
+# Editor
+.cursor/
+
+# Dependencies
+node_modules/
+
+# Large binary files
+*.pdf
+*.pptx
+*.mov
+*.xlsx
+*.csv
+
+# Portfolio (large binaries)
+portfolio/
+
+# Local settings (may contain secrets)
+.claude/settings.local.json

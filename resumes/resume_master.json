@@ -1,0 +1,169 @@
+{
+  "name": "Ritee Rouf",
+  "location": "San Mateo, CA",
+  "phone": "650-395-7532",
+  "email": "riteerouf@gmail.com",
+  "linkedin": "LinkedIn",
+  "summary": "Sr. Product Marketing Executive and AI GTM Leader scaling growth across Enterprise SaaS, global infrastructure, healthcare, and developer platforms at Google, VMware, Oracle, and Omnicell. Expert at shaping category narratives and translating complex technologies into compelling business stories that accelerate adoption. A hands-on people leader and \"0-to-1\" builder with proven experience driving measurable growth: 35% pipeline expansion, 3x revenue increase, and 7x SQL growth. Adept at aligning cross-functional stakeholders to execute strategic wins.",
+  "core_skills": [
+    "Category Creation",
+    "Enterprise GTM Strategy",
+    "Product Positioning & Messaging",
+    "Sales Enablement & Playbooks",
+    "Partner Ecosystems",
+    "Storytelling & Developer Marketing",
+    "ICP",
+    "Buyer Personas",
+    "Data-Driven Campaign Analysis & Optimization",
+    "Competitive Intelligence",
+    "Cross-Functional Leadership",
+    "Generative AI",
+    "Windsurf IDE",
+    "Render",
+    "Lovable"
+  ],
+  "key_achievements": [
+    {
+      "label": "AI GTM Leadership (LatticeFlow)",
+      "text": "Built a full stack marketing function from the ground up, achieving 35% pipeline growth and 50% organic search lift within 6 months; established global thought leadership by orchestrating an AI Safety panel with global AI leaders at the World Economic Forum (Davos)."
+    },
+    {
+      "label": "Category Creation & Sales Acceleration",
+      "text": "Launched the first partner ecosystem ($4M pipeline) and architected sales playbook driving 7x SQL increase and 30% faster deal cycles. Instrumental in the category creation of \"Data Catalog\" at Alation while scaling from Series B-C."
+    },
+    {
+      "label": "Enterprise Launch + Revenue Impact",
+      "text": "Drove $45M expansion revenue at Omnicell via pre-configured medication dispensing cabinets (separate from XaaS repositioning); orchestrated the first global launch of vSphere Integrated Containers reaching 400+ enterprise customers (VMworld keynote, 20K attendees)."
+    }
+  ],
+  "experience": [
+    {
+      "title": "AI Marketing Consultant and Advisor",
+      "company": "Independent",
+      "location": null,
+      "period": "2025 – Present",
+      "bullets": [
+        "Full Stack Marketing: Leading GTM strategy for a literacy startup focused on improving reading skills for children with dyslexia. Leveraging AI-augmented workflows and tools to accelerate market research, content development.",
+        "Strategic Advisory: Advising early stage founders on GTM strategies that use AI to scale adoption.",
+        "Technical Upskilling: Deepening technical fluency in AI through hands-on development; built and shipped a full stack web application to gain first hand experience in developing a product from dev to production."
+      ]
+    },
+    {
+      "title": "Career Break",
+      "company": null,
+      "location": null,
+      "period": "2024 - 2025",
+      "bullets": [
+        "Intentional career break for health, and professional upskilling",
+        "Advisor to an early stage startup - KiwiQ AI"
+      ]
+    },
+    {
+      "title": "Head of Marketing and Executive Team Member",
+      "company": "LATTICEFLOW AI",
+      "location": "Remote",
+      "period": "2023 - 2024",
+      "bullets": [
+        "Built a full-stack marketing function from scratch, overseeing martech infrastructure, budget allocation, team development.",
+        "Redefined ICPs, buyer personas, messaging and positioning, targeting c-level AI leaders.",
+        "Accelerated pipeline growth by 35% and organic traffic by 50% via high-impact integrated campaigns.",
+        "Elevated brand by orchestrating an AI Safety panel at AI House Davos during World Economic Forum, positioning the company as a thought leader in trustworthy AI."
+      ]
+    },
+    {
+      "title": "Sr. Product Marketing Manager",
+      "company": "Omnicell",
+      "location": "Mountain View, CA",
+      "period": "2020 – 2023",
+      "bullets": [
+        "Drove $45M expansion revenue growth via pre-configured medication dispensing cabinets during COVID-19 (3x from $15M); separately led XaaS repositioning securing contracts with Stanford, Cleveland Clinic, and other top-tier health systems.",
+        "Spearheaded Voice of the Customer initiative (30+ C-suite and hospital staff interviews) that refined ICP, redefined positioning, and directly influenced product roadmap.",
+        "Directed $3M strategic distribution partnership with Fresenius Kabi, building joint sales training programs."
+      ]
+    },
+    {
+      "title": "Founder and Product Leader",
+      "company": "Storia",
+      "location": "Redwood City, CA",
+      "period": "2018 – 2020",
+      "bullets": [
+        "Founded and bootstrapped a K-12 edtech startup; leading a cross-functional team (engineering, design) to ship a mobile app from concept to launch.",
+        "Validated product-market fit through pilot adoption in several schools, achieving a 4.5-star App Store rating."
+      ]
+    },
+    {
+      "title": "Director of Product Marketing",
+      "company": "Alation",
+      "location": "Redwood City, CA",
+      "period": "2017 – 2018",
+      "bullets": [
+        "Launched the company's first strategic partner ecosystem, generating $4M pipeline growth.",
+        "Architected a repeatable sales playbook and led role-play training workshops that fueled a 7x increase in SQLs and significantly reduced sales cycle time.",
+        "Collaborated with key stakeholders to design and implement customer-facing strategies focused on category creation."
+      ]
+    },
+    {
+      "title": "Enterprise Product Marketing Manager, Office of the CTO",
+      "company": "VMware",
+      "location": "Palo Alto, CA",
+      "period": "2015 – 2017",
+      "bullets": [
+        "Orchestrated the GTM strategy of vSphere Integrated Containers (VIC), modernizing the $4B vSphere portfolio with advanced container integration capabilities.",
+        "Led a high-performance 3 person team to execute the global launch, delivering all messaging, pricing, and assets to secure 400+ enterprise customer adoptions.",
+        "Crafted the VMworld Keynote narrative and led the product announcement strategy, successfully positioning VIC to an audience of 20,000+ attendees."
+      ]
+    },
+    {
+      "title": "HCM Product Marketing & Strategy",
+      "company": "Oracle",
+      "location": "Redwood City, CA",
+      "period": "2012 – 2015",
+      "bullets": [
+        "Spearheaded the SaaS GTM strategy for Oracle Learning Cloud (formerly Taleo Learn), resulting in $27M revenue.",
+        "Orchestrated the post-acquisition customer retention strategy for 600+ legacy Taleo mid-market accounts, while managing customer references.",
+        "Architected a new enterprise sales motion based on deep win-loss insights; revamped the global pitch deck and sales playbooks to successfully penetrate competitive markets and capture net-new share."
+      ]
+    },
+    {
+      "title": "Sr. Product Manager",
+      "company": "Mindjet",
+      "location": "San Francisco, CA",
+      "period": "2009 – 2012",
+      "bullets": [
+        "Launched first Salesforce AppExchange integration, expanding market reach and enterprise sales channels through strategic product partnerships.",
+        "Aligned engineering teams on roadmap priorities by leveraging qualitative user research, removing subjectivity and ensuring user driven feature selection."
+      ]
+    },
+    {
+      "title": "Global Product Marketing Lead",
+      "company": "Google (via Keyhole acquisition)",
+      "location": "Mountain View, CA",
+      "period": "2004 – 2008",
+      "bullets": [
+        "Led the launch of Google Earth including rebranding, leading to 200M+ installations globally.",
+        "Launched Google My Maps and Map Maker, democratizing map creation and driving a surge in developer adoption for the Maps API ecosystem.",
+        "Negotiated a strategic co-marketing partnership with NTV Japan, generating 2M+ API maps transactions and establishing a blueprint for regional API monetization.",
+        "Orchestrated the first global Google I/O launch in collaboration with the Google developer team."
+      ]
+    },
+    {
+      "title": "Marketing Manager",
+      "company": "Keyhole",
+      "location": "Mountain View, CA",
+      "period": "2003 – 2004",
+      "bullets": [
+        "Authored the monthly Keyhole newsletter, driving early user adoption and market awareness.",
+        "Spearheaded the 'Where in the World' contest as Keyhole's community leader."
+      ]
+    }
+  ],
+  "education": [
+    "MBA, Auburn University",
+    "Executive Education: Wharton Design thinking",
+    "Stanford D.School"
+  ],
+  "certifications": [
+    "DeepLearning.ai (AI for Everyone, Building Apps with Windsurf, building towards MCP with Claude)",
+    "100 School (Coding with AI)"
+  ]
+}
