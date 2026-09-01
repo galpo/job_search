@@ -79,3 +79,8 @@ Structure for hiring manager outreach:
 - Depth over breadth
 - Live the user journey
 - Voice: warm, inclusive, practitioner-grounded; authority demonstrated, never announced
+
+## Writing Quality
+> See `voice/HUMANIZED_WRITING_GUIDE.md` for the full standard. Load it for any narrative/long-form draft (Substack, LinkedIn, cover letters, interview answers).
+
+Short version: lead with specific named details over generic claims; own opinions as "I think/I suspect" rather than hedging them away; let contradictions in a person or situation stand instead of flattening them; no corporate qualifiers, superlatives, or transition scaffolding ("furthermore," "in conclusion"); end on a plain, proportionate reaction, not a summary or a pitch.

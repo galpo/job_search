@@ -13,6 +13,7 @@ Built on Claude Code CLI + Anthropic SDK.
 | `outreach/TEMPLATES.md` | Outreach templates T1–T7 |
 | `interview_coach/stories/STAR_BANK.md` | Pre-written STAR stories |
 | `master_profile.json` | Scoring weights + deal-breakers |
+| `voice/HUMANIZED_WRITING_GUIDE.md` | Writing-quality standard — load for any narrative content (Substack, LinkedIn, cover letters, interview answers) |
 
 **Do NOT load:** `archive/` files are closed/historical — read only if explicitly asked.
 
@@ -54,6 +55,7 @@ Built on Claude Code CLI + Anthropic SDK.
 
 ## Key rules
 - Never fabricate metrics — verified figures only
+- Narrative/long-form content must follow `voice/HUMANIZED_WRITING_GUIDE.md` (specific details over generic claims, owned opinions, no corporate hedging or superlatives, no forced conclusions)
 - Never swap or combine the two Omnicell achievements ($45M vs XaaS)
 - No em dashes in any authored content
 - Resume = 2 pages max, reverse-chronological
